@@ -17,6 +17,7 @@ class _LoadingState extends State<Loading> {
     Response response = await get(url);
     Map data = jsonDecode(response.body);
     print(data);
+    print(data['title']);
     // print(data);
 
   }
