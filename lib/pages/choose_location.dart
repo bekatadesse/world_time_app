@@ -22,7 +22,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
 
   @override
   Widget build(BuildContext context) {
-    print('build function ran');
+    //print('build function ran');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[400],
