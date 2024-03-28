@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_time_app/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 class Loading extends StatefulWidget {
@@ -10,7 +11,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
   void setupWorldTime() async{
-    WorldTime instance = WorldTime(location:'Addis Ababa', flag: 'ethiopia.png', url: 'Africa/Addis_Ababa');
+    WorldTime instance = WorldTime(location:'Addis Ababa', flag: 'ethiopian.png', url: 'Africa/Addis_Ababa');
     await instance.getTime();
 
     //pass the data to the home screen using Navigator
@@ -30,9 +31,12 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(50.0),
-          child: Text('loading screen')
+      backgroundColor: Colors.blue,
+      body: Center(
+        child: SpinKitHourGlass(
+          color: Colors.white,
+          size: 80.0,
+        ),
       ),
     );
   }
