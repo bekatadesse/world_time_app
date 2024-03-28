@@ -28,8 +28,7 @@ class WorldTime{
       now.add(Duration(hours: int.parse(offset)));
 
       //set the time property
-      isDay = now.hour < 6 && now.hour > 20 ? true : false;
-      print(isDay);
+      isDay = now.hour > 6 && now.hour < 20 ? true : false;
       time =  DateFormat.jm().format(now);
 
     } catch (e) {
