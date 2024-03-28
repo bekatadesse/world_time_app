@@ -6,7 +6,8 @@ class WorldTime{
   String location;
   String time = '';
   String flag;
-  String url;  //location url for api endpoint
+  String url;
+  bool isDay = true;//location url for api endpoint
 
   //constructor
   WorldTime({this.location='', this.flag='', this.url=''});
@@ -27,6 +28,8 @@ class WorldTime{
       now.add(Duration(hours: int.parse(offset)));
 
       //set the time property
+      isDay = now.hour < 6 && now.hour > 20 ? true : false;
+      print(isDay);
       time =  DateFormat.jm().format(now);
 
     } catch (e) {
