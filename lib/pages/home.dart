@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     //
-    data = ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
+    data =data.isNotEmpty ? data: ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
     print(data);
 
     // set background
@@ -37,9 +37,18 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 SizedBox(height: 13.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/choose_location');
-                  },
+                  onPressed: () async {
+                    dynamic result = await Navigator.pushNamed(context, '/choose_location');
+
+                    setState(() {
+                      data = {
+                        'location':result['location'],
+                        'flag': result['flag'],
+                        'time': result['time'],
+                        'isDay': result['isDay'],
+                      };
+                    });
+                    },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue[400]),
                   ),
@@ -78,7 +87,7 @@ class _HomeState extends State<Home> {
 
                 Padding(
                   padding: const EdgeInsets.all(100.0),
-                  child: Image.asset("assets/et.png"),
+                  child: Image.asset("assets/${data['flag']}"),
                 ),
 
               ],
