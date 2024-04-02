@@ -22,10 +22,16 @@ class WorldTime{
       //get properties from data
       Map data = jsonDecode(response.body);
       String datetime = data['datetime'];
+      //print(data);
       String offset = data['utc_offset'].substring(1, 3);
 
       DateTime now = DateTime.parse(datetime);
-      now.add(Duration(hours: int.parse(offset)));
+      now = now.subtract(Duration(hours: int.parse(offset)));
+
+      // change am to pm
+      if (now.hour < 12) {
+        now = now.add(Duration(hours: 6));
+      }
 
       //set the time property
       isDay = now.hour > 6 && now.hour < 20 ? true : false;
